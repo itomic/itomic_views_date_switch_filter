@@ -1,0 +1,49 @@
+<?php 
+
+/**
+ * Implements hook_views_api().
+ */
+function itomic_views_date_switch_filter_views_api() {
+  return array(
+    'api' => 3,
+    'path' => drupal_get_path('module', 'itomic_views_date_switch_filter') . '/inc',
+  );
+}
+
+/**
+ * Implementation of hook_views_handlers()
+ */
+function itomic_views_date_switch_filter_views_handlers() {
+  return array(
+    'info' => array(
+      // path to handler files
+      'path' => drupal_get_path('module', 'itomic_views_date_switch_filter') . '/inc',
+    ),
+    'handlers' => array(
+      // register our custom filter, with the class/file name and parent class
+      'itomic_views_date_switch_filter_handler_filter_date_select' => array(
+        'parent' => 'views_handler_filter',
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_views_data()
+ */
+function itomic_views_date_switch_filter_views_data() {
+  $data = array();
+
+  $data['node']['date_select'] = array(
+    'group' => t('Date Switch Select'),
+    'real field' => 'created',
+    'title' => t('Date Select Switch Filter'),
+    'help' => t('Upper and lower created filter.'),
+    'filter' => array(
+      'handler' => 'itomic_views_date_switch_filter_handler_filter_date_select',
+    ),
+  );
+
+
+  return $data;
+}

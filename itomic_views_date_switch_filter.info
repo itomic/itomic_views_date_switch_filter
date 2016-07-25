@@ -1,0 +1,5 @@
+name = Itomic Views Date Switch Filter
+core = 7.x
+package = Itomic
+files[] = inc/itomic_views_date_switch_filter_handler_filter_date_select.inc
+dependencies[] = date_views
